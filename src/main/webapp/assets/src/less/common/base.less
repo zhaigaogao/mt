@@ -1,0 +1,265 @@
+@charset "utf-8";
+html {
+    height: 100%;
+}
+body {
+    background-color: @color-white;
+    font-family: "Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;
+    min-width: 1000px;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 76px;
+}
+
+.row-maintain {
+    margin-right: 0;
+    margin-left: 0;
+    .col-maintain {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.panel-maintain {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    color: @fontcolor-normal;
+    .panel-head {
+        font-size: 18px;
+    }
+}
+.table-maintain {
+    border-color: @bordercolor-grey;
+    margin-bottom: 0;
+    thead {
+        background-color: @bordercolor-grey;
+    }
+    & > thead > tr > th,
+    & > tbody > tr > td {
+        font-size: 12px;
+        border: 1px solid @bordercolor-grey;
+        height: 54px;
+        padding: 12px;
+    }
+    & > tbody > tr:nth-child(odd) {
+        background-color: @color-white;
+    }
+    & > tbody > tr:hover {
+        background-color: @bgcolor-lightcyan;
+    }
+    td.operation {
+        & > div {
+            display: table-cell;
+            height: 28px;
+            line-height: 14px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 0 12px;
+            & > a {
+                display: inline-block;
+                color: @fontcolor-blue;
+                &:hover {
+                    color: @fontcolor-green;
+                }
+                &:active {
+                    color: @fontcolor-green;
+                }
+                &.two-letter {
+                    width: 28px;
+                }
+                &.four-letter {
+                    width: 56px;
+                }
+            }
+            & > a.do-delete {
+                color: @fontcolor-grey;
+                &:hover {
+                    color: @fontcolor-normal;
+                }
+                &:active {
+                    color: @fontcolor-normal;
+                }
+            }
+            & > a.do-enable {
+                color: @fontcolor-green;
+                &:hover {
+                    color: @fontcolor-darkgreen;
+                }
+                &:active {
+                    color: @fontcolor-darkgreen;
+                }
+            }
+            & > a.do-disable {
+                color: @fontcolor-red;
+                &:hover {
+                    color: @fontcolor-darkred;
+                }
+                &:active {
+                    color: @fontcolor-darkred;
+                }
+            }
+        }
+    }
+    td.status {
+        text-align: center;
+        & > span {
+            color: @color-white;
+            border-radius: 3px;
+            width: 40px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            display: inline-block;
+            &.status-enable {
+                background-color: @bgcolor-green;
+            }
+            &.status-disable {
+                background-color: @bgcolor-red;
+            }
+        }
+    }
+}
+.form-maintain {
+    border: 1px solid @bordercolor-grey;
+    background: @color-white;
+    border-radius: 2px;
+    padding: 30px 10% 30px 0;
+    .form-group {
+        width: 400px;
+        margin: 10px auto;
+        position: relative;
+        & > .control-label {
+            position: absolute;
+            right: 400px;
+            text-align: right;
+            padding-right: 10px;
+            width: 12em;
+            height: 32px;
+            line-height: 32px;
+            font-weight: normal;
+            font-size: 12px;
+        }
+        & > .form-control {
+            height: 32px;
+            border-color: @bordercolor-grey;
+            border-radius: 2px;
+            box-shadow: none;
+            font-size: 12px;
+            &.error-valid {
+                border-color: @bordercolor-red;
+            }
+        }
+        & > .checkbox {
+            height: 32px;
+            line-height: 32px;
+        }
+        &.button-group {
+            margin-top: 50px;
+        }
+        &.required {
+            &::after {
+                content: "*";
+                position: absolute;
+                height: 32px;
+                padding: 8px 0 8px 5px;
+                color: @fontcolor-red;
+                left: 400px;
+                top: 0;
+                font-size: 18px;
+            }
+        }
+    }
+    label.error-valid {
+        color: @fontcolor-red;
+        position: absolute;
+        left: 400px;
+        top: 0;
+        width: 20em;
+        height: 32px;
+        line-height: 32px;
+        padding-left: 15px;
+        font-weight: normal;
+        font-size: 12px;
+    }
+}
+.bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    .row-maintain {
+        height: 100%;
+    }
+    .col-maintain {
+        height: 100%;
+    }
+    .bg-left {
+        background-color: @color-white;
+    }
+    .bg-right {
+        background-color: @bgcolor-lightgrey;
+    }
+}
+
+
+.text-require {
+    color: @fontcolor-red;
+}
+.text-red {
+    color: @fontcolor-red;
+}
+.text-green {
+    color: @fontcolor-green;
+}
+.btn.btn-add {
+    background-color: @bgcolor-blue;
+    padding: 6px 12px 6px 44px;
+    border: none;
+    color: @color-white;
+    position: relative;
+    &::before {
+        content: "+";
+        border-right: 1px solid @color-white;
+        color: @color-white;
+        font-size: 18px;
+        line-height: 32px;
+        height: 32px;
+        width: 32px;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    &:hover {
+        background-color: @bgcolor-darkblue;
+    }
+}
+.btn.btn-submit {
+    background-color: @bgcolor-blue;
+    color: @color-white;
+    width: 129px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    &:hover {
+        background-color: @bgcolor-darkblue;
+    }
+}
+.btn.btn-cancle {
+    background-color: @bgcolor-grey;
+    color: @fontcolor-grey;
+    width: 129px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    &:hover {
+        background-color: @bgcolor-darkgrey;
+    }
+}

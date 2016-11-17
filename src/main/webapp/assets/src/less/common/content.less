@@ -1,0 +1,93 @@
+@charset "utf-8";
+.content {
+    width: 100%;
+    .table {
+        & > thead > tr >th, 
+        & > tbody > tr >td {
+            vertical-align: middle;
+        }
+    }
+    .search-form {
+        line-height: 34px;
+        input[type=text] {
+            width:125px;
+            height: 34px;
+            margin: auto 10px;
+            padding: 0 5px;
+            border: 1px solid @bordercolor-grey;
+        }
+    }
+    .pageinfo {
+        line-height: 34px;
+    }
+    .page-box {
+        text-align: center;
+    }
+    .pagination {
+        margin: 0;
+        display: inline-block;
+        li.disabled > a {
+            color: @fontcolor-grey;
+        }
+    }
+
+    .menu-maintain {
+        padding-top: 40px;
+        font-size: 15px;
+        .panel-heading {
+            padding: 10px 15px 10px 45px;
+        }
+        a.list-group-item {
+            position: relative;
+            color: @fontcolor-grey;
+            padding: 10px 15px 10px 66px;
+            border: none;
+            background-repeat: no-repeat;
+            background-position: 45px center;
+            &:hover {
+                background-color: @bgcolor-lightgrey;
+            }
+            &.active {
+                color: @fontcolor-blue;
+                background-color: @bgcolor-lightgrey;
+                border: none;
+                &::before {
+                    content: " ";
+                    width: 4px;
+                    height: 40px;
+                    background-color: @bgcolor-blue;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+            }
+            &.enterprise {
+                background-image: url(svg/enterprise.svg);
+                &.active {
+                    background-image: url(svg/enterprise-active.svg);
+                }
+            }
+            &.user {
+                background-image: url(svg/user.svg);
+                &.active {
+                    background-image: url(svg/user-active.svg);
+                }
+            }
+        }
+    }
+
+    .panel-maintain-content {
+        .panel-heading {
+            padding: 30px 20px 10px;
+            font-size: 18px;
+        }
+        .panel-body {
+            padding: 10px 20px;
+        }
+        .panel-footer {
+            padding: 0 20px;
+            background-color: transparent;
+            border: none;
+        }
+    }
+}

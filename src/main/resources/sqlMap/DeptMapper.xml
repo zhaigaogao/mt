@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.maintain.dao.DeptMapper">
+	<resultMap id="BaseResultMap" type="cmcc.mobile.maintain.entity.Dept">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="create_user" property="createUser" jdbcType="VARCHAR" />
+		<result column="dep_name" property="depName" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="BIGINT" />
+		<result column="bossareacode" property="bossareacode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, create_date, create_user, dep_name, parent_id,
+		bossareacode
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from mt_dept
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		mt_dept
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="cmcc.mobile.maintain.entity.Dept">
+		insert into mt_dept (id,
+		create_date, create_user,
+		dep_name, parent_id, bossareacode
+		)
+		values
+		(#{id,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP},
+		#{createUser,jdbcType=VARCHAR},
+		#{depName,jdbcType=VARCHAR},
+		#{parentId,jdbcType=BIGINT}, #{bossareacode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="cmcc.mobile.maintain.entity.Dept">
+		insert into mt_dept
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="depName != null">
+				dep_name,
+			</if>
+			<if test="parentId != null">
+				parent_id,
+			</if>
+			<if test="bossareacode != null">
+				bossareacode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="depName != null">
+				#{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				#{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="bossareacode != null">
+				#{bossareacode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="cmcc.mobile.maintain.entity.Dept">
+		update mt_dept
+		<set>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="depName != null">
+				dep_name = #{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=BIGINT},
+			</if>
+			<if test="bossareacode != null">
+				bossareacode = #{bossareacode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cmcc.mobile.maintain.entity.Dept">
+		update mt_dept
+		set
+		create_date = #{createDate,jdbcType=TIMESTAMP},
+		create_user =
+		#{createUser,jdbcType=VARCHAR},
+		dep_name = #{depName,jdbcType=VARCHAR},
+		parent_id = #{parentId,jdbcType=BIGINT},
+		bossareacode =
+		#{bossareacode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="findByParentId" parameterType="cmcc.mobile.maintain.entity.Dept"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from mt_dept where 1=1
+		<if test="parentId != null">
+			and parent_id = #{parentId}
+		</if>
+		<if test="parentId == null">
+			and parent_id is null
+		</if>
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from mt_dept
+		where parent_id is not null
+	</select>
+
+	<select id="findChildCollections" resultType="java.lang.Long"
+		parameterType="java.lang.Long">
+		select id from mt_dept
+		where
+		parent_id=#{parentId}
+	</select>
+</mapper>

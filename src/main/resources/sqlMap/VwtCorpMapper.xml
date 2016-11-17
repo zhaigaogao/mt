@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cmcc.mobile.maintain.dao.VwtCorpMapper" >
+
+	<resultMap id="BaseResultMap" type="cmcc.mobile.maintain.entity.VwtCorp" >
+	    <id column="corpid" property="corpid" jdbcType="VARCHAR" />
+	    <result column="corpname" property="corpname" jdbcType="VARCHAR" />
+	    <result column="corppersonname" property="corppersonname" jdbcType="VARCHAR" />
+	    <result column="corpmobilephone" property="corpmobilephone" jdbcType="VARCHAR" />
+	    <result column="customerid" property="customerid" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	   <resultMap id="BaseResultMap2" type="cmcc.mobile.maintain.vo.VwtCorpVo" >
+	    <id column="corpid" property="corpid" jdbcType="VARCHAR" />
+	    <result column="corpname" property="corpname" jdbcType="VARCHAR" />
+	    <result column="corppersonname" property="corppersonname" jdbcType="VARCHAR" />
+	    <result column="corpmobilephone" property="corpmobilephone" jdbcType="VARCHAR" />
+	    <result column="name" property="clientManagerName" jdbcType="VARCHAR" />
+	    <result column="telnum" property="clientManagerphone" jdbcType="VARCHAR" />
+	  </resultMap>
+	  
+	  
+	  <select id="getInfoById2" parameterType="java.lang.String" resultMap="BaseResultMap2">
+	  	 select a.corpid,a.corpname,a.corppersonname,a.corpmobilephone,b.name,b.telnum from 
+	  	 vwt_corp a left join vwt_customer b on a.customerid = b.id
+	  	 where corpid = #{id,jdbcType=VARCHAR}
+	  </select>
+	  
+	  <select id="getInfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  	 select * from vwt_corp where corpid = #{id,jdbcType=VARCHAR}
+	  </select>
+	    <select id="getCorp" parameterType="cmcc.mobile.maintain.entity.VwtCorp" resultMap="BaseResultMap">
+	  	 select v.corpid from vwt_corp v
+	  	 left join vwt_customer c on v.customerid = c.id
+	  	 where v.corpname = #{corpname} and c.telnum = #{telnum}
+	  </select>
+	  
+	  <!-- 根据企业名称和客户经理电话查询所有企业编码 -->
+	    <select id="getCorpByRecond" parameterType="cmcc.mobile.maintain.vo.SyschroVo" resultMap="BaseResultMap">
+	  	 select * from vwt_corp  where corpid = #{ecode}
+	  </select>
+	  
+	     <select id="selectByCustomerId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  	 select * from vwt_corp  where customerid = #{customerId}
+	  </select>
+</mapper>

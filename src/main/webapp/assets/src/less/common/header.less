@@ -1,0 +1,35 @@
+@charset "utf-8";
+.navbar-maintain {
+    height: 76px;
+    background: @bgcolor-blue;
+    color: @color-white;
+    padding: 0 20px;
+    margin-bottom: 0;
+    .logo {
+        line-height: 76px;
+        & > img {
+            height: 32px;
+        }
+    }
+    .separate {
+        height: 30px;
+        width: 1px;
+        margin: 23px 19px;
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .title {
+        font-size: 20px;
+        line-height: 76px;
+        letter-spacing: 1px;
+    }
+    .user {
+        height: 76px;
+        padding: 16px 0;
+        line-height: 22px;
+        font-weight: 100;
+        a {
+            color: @fontcolor-lightgrey;
+        }
+    }
+}
